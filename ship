@@ -6,5 +6,5 @@
 set -u
 
 if poetry build ; then
-    poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "${1:-pypi_test}"
+  ( set +xv ; poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "${1:-pypi_test}" )
 fi
