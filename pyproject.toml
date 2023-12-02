@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "xontrib-brace-expansion"
+version = "1.0.0"
+description = "Implements brace expansion in xonsh."
+authors = ["Ryan Delaney <ryan.patrick.delaney+pypi@proton.me>"]
+readme = "README.rst"
+license = "MIT"
+packages = [
+  { include = "xontrib" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
