@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "xontrib-brace-expansion"
-version = "1.0.0"
+version = "0.1.0"
 description = "Implements brace expansion in xonsh."
 authors = ["Ryan Delaney <ryan.patrick.delaney+pypi@proton.me>"]
 readme = "README.rst"
