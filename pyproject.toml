@@ -5,6 +5,8 @@ description = "Implements brace expansion in xonsh."
 authors = ["Ryan Delaney <ryan.patrick.delaney+pypi@proton.me>"]
 readme = "README.rst"
 license = "MIT"
+repository = "https://github.com/rpdelaney/xontrib-brace-expansion"
+homepage = "https://pypi.org/project/xontrib-brace-expansion"
 packages = [
   { include = "xontrib" }
 ]
