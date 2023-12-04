@@ -1,6 +1,5 @@
 xontrib-brace-expansion
-===============
-
+=======================
 |VERSION|
 
 .. |VERSION| image:: https://img.shields.io/pypi/v/xontrib-brace-expansion
