@@ -21,8 +21,12 @@ from xonsh.events import events
 
 @events.on_transform_command
 def expand_braces(cmd, **_):
+    if '[' in cmd or '$(' in cmd or '@(' in cmd:
+        return cmd
+
     parts = cmd.split()
     expanded_cmds = []
+    requires_expansion = False
 
     for part in parts:
         if "{" in part and "}" in part:
@@ -32,7 +36,11 @@ def expand_braces(cmd, **_):
                 prefix + option + postfix for option in options.split(",")
             ]
             expanded_cmds.extend(expanded_parts)
+            requires_expansion = True
         else:
             expanded_cmds.append(part)
 
-    return " ".join(expanded_cmds)
+    if requires_expansion:
+        return " ".join(expanded_cmds)
+
+    return cmd
