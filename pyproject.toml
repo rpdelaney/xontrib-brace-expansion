@@ -26,5 +26,3 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.9"
-
-[tool.poetry.dev-dependencies]

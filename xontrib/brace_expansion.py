@@ -19,20 +19,32 @@ See also:
 from xonsh.events import events
 
 
-@events.on_transform_command
-def expand_braces(cmd, **_):
-    parts = cmd.split()
-    expanded_cmds = []
+def _expand_line(line):
+    # Skip lines that don't contain brace expansion patterns
+    if "{" not in line or "}" not in line:
+        return line
+
+    # Preserve leading whitespace
+    stripped = line.lstrip()
+    indent = line[: len(line) - len(stripped)]
+
+    parts = stripped.split()
+    expanded_parts = []
 
     for part in parts:
         if "{" in part and "}" in part:
-            prefix, braces, postfix = part.partition("{")
-            options, _, postfix = postfix.partition("}")
-            expanded_parts = [
+            prefix, _, rest = part.partition("{")
+            options, _, postfix = rest.partition("}")
+            expanded_parts.extend(
                 prefix + option + postfix for option in options.split(",")
-            ]
-            expanded_cmds.extend(expanded_parts)
+            )
         else:
-            expanded_cmds.append(part)
+            expanded_parts.append(part)
 
-    return " ".join(expanded_cmds)
+    return indent + " ".join(expanded_parts)
+
+
+@events.on_transform_command
+def expand_braces(cmd, **_):
+    lines = cmd.split("\n")
+    return "\n".join(_expand_line(line) for line in lines)
